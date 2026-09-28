@@ -1,4 +1,4 @@
-using Sistema_de_Filas.Data.DataContext;
+using Sistema_de_Filas.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

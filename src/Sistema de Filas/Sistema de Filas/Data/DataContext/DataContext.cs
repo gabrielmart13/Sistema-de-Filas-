@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sistema_de_Filas.Domain.Models;
 
-namespace Sistema_de_Filas.Data.DataContext
+namespace Sistema_de_Filas.Data
 {
     public class DataContext : DbContext
     {
