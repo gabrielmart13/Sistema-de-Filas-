@@ -1,0 +1,6 @@
+@Sistema_de_Filas_HostAddress = http://localhost:5010
+
+GET {{Sistema_de_Filas_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
