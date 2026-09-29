@@ -55,5 +55,12 @@ namespace Sistema_de_Filas.Data.Repositories
 
             return senha;
         }
+
+        public async Task<Senha?> PegarUltimaSenhaAsync()
+        {
+            var ultimaSenha = await _context.Senhas.OrderByDescending(x => x.Numero).FirstOrDefaultAsync();
+
+            return ultimaSenha;
+        }
     }
 }

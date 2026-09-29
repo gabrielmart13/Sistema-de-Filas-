@@ -9,6 +9,7 @@ namespace Sistema_de_Filas.Data.Repositories.Interfaces
         public Task<Senha> AdicionarAsync(Senha senha);
         public Task<Senha> AtualizarAsync(Senha senha);
         public Task<Senha> DeletarAsync(Senha senha);
+        public Task<Senha?> PegarUltimaSenhaAsync();
 
     }
 }
