@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Sistema_de_Filas.Data.Repositories;
+using Sistema_de_Filas.Domain.DTOs.SenhaDTO;
 using Sistema_de_Filas.Domain.Models;
+using Sistema_de_Filas.Services.Interfaces;
 
 namespace Sistema_de_Filas.Controllers
 {
@@ -10,29 +12,36 @@ namespace Sistema_de_Filas.Controllers
     [Route("api/[controller]")]
     public class SenhaController : ControllerBase
     {
-        private readonly SenhaRepo _senharepo;
+        private readonly ISenhaService _senhaservice;
 
-        public SenhaController(SenhaRepo senharepo)
+        public SenhaController(ISenhaService senhaservice)
         {
-            _senharepo = senharepo;
+            _senhaservice = senhaservice;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            throw new NotImplementedException();
+            var senhas = await _senhaservice.PegarTodasSenhas();
+            return Ok(senhas);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            throw new NotImplementedException();
+            var senha = await _senhaservice.PegarSenha(id);
+            return Ok(senha);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Senha senha)
+        public async Task<IActionResult> Post(CriarSenhaRequest request)
         {
-            throw new NotImplementedException();
+            var senha = new Senha
+            {
+                IdFila = request.IdFila,
+                IdUsuario = request.IdUsuario
+            };
+            return Ok(await _senhaservice.AdicionarSenha(senha));
         }
 
         [HttpPut("{id}")]
@@ -44,7 +53,7 @@ namespace Sistema_de_Filas.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            throw new NotImplementedException();
+            return Ok(await _senhaservice.DeletarSenha(id));
         }
 
 

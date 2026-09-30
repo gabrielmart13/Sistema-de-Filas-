@@ -4,6 +4,7 @@ namespace Sistema_de_Filas.Data.Repositories.Interfaces
 {
     public interface ISenhaRepo
     {
+        //Criando a interface de Senha, isso e basicamente a assinatura desses metodos que estao no SenhaRepo
         public Task<List<Senha>> PegarTodasAsync();
         public Task<Senha?> PegarPorIdAsync(int id);
         public Task<Senha> AdicionarAsync(Senha senha);

@@ -22,9 +22,10 @@ namespace Sistema_de_Filas.Services
                 throw new Exception("Usuário ou fila inválidos");
             }
 
-            var ultimaSenha = await _senhaRepo.PegarUltimaSenhaAsync();
-            
+            var ultimaSenha = await _senhaRepo.PegarUltimaSenhaAsync(); //Usando um metodo do senharepo para pegar a ultima senha
 
+            
+            //Logica para adicionar numeros em ordem 
             if (ultimaSenha == null)
             {
                 senha.Numero = 1;
@@ -34,7 +35,8 @@ namespace Sistema_de_Filas.Services
                 senha.Numero = ultimaSenha.Numero + 1;
             }
 
-            senha.Status = "AGUARDANDO";
+            //Dados criados pelo sistema na hora de adicionar uma senha
+            senha.Status = "AGUARDANDO"; 
             senha.CriadaEm = DateTime.Now;
             
 

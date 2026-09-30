@@ -9,23 +9,23 @@ namespace Sistema_de_Filas.Data.Repositories
     {
         private readonly DataContext _context;
 
-        public SenhaRepo(DataContext context)
+        public SenhaRepo(DataContext context)//Injeção de dependencia do meu contexto
         {
             _context = context;
         }
 
         public async Task<List<Senha>> PegarTodasAsync()
         {
-            var senhas = await _context.Senhas
+            var senhas = await _context.Senhas //Pegando todas as senhas, o asNoTracking faz com que a info não seja traqueada
                 .AsNoTracking()
                 .ToListAsync();
 
             return senhas;
         }
 
-        public async Task<Senha?> PegarPorIdAsync(int id)
+        public async Task<Senha?> PegarPorIdAsync(int id) 
         {
-            var senha = await _context.Senhas
+            var senha = await _context.Senhas //Pegando a senha por id
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == id);
 

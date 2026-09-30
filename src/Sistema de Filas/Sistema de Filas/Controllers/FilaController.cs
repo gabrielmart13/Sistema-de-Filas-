@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Sistema_de_Filas.Data.Repositories;
+using Sistema_de_Filas.Domain.DTOs.FilaDTO;
 using Sistema_de_Filas.Domain.Models;
+using Sistema_de_Filas.Services.Interfaces;
 
 namespace Sistema_de_Filas.Controllers
 {
@@ -10,41 +12,55 @@ namespace Sistema_de_Filas.Controllers
     [Route("api/[controller]")]
     public class FilaController : ControllerBase
     {
-        private readonly FilaRepo _filarepo;
+        private readonly IFilaService _filaservice;
 
-        public FilaController(FilaRepo filarepo)
+        public FilaController(IFilaService filaservice)
         {
-            _filarepo = filarepo;
+            _filaservice = filaservice;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            throw new NotImplementedException();
+            var usuarios = await _filaservice.PegarTodasFilas();
+            return Ok(usuarios);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            throw new NotImplementedException();
+            var usuario = await _filaservice.PegarFila(id);
+            return Ok(usuario);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Fila fila)
+        public async Task<IActionResult> Post(CriarFilaRequest request)
         {
-            throw new NotImplementedException();
+            var fila = new Fila
+            {
+                Nome = request.Nome,
+                Descricao = request.Descricao
+            };
+            return Ok(await _filaservice.AdicionarFila(fila));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Fila fila)
+        public async Task<IActionResult> Put(int id, AtualizarFilaRequest request)
         {
-            throw new NotImplementedException();
+            var fila = new Fila
+            {
+                Nome = request.Nome,
+                Descricao = request.Descricao,
+                Ativa = request.Ativa
+            };
+
+            return Ok(await _filaservice.AtualizarFila(id, fila));
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            throw new NotImplementedException();
+            return Ok(await _filaservice.DeletarFila(id));
         }
 
 

@@ -4,6 +4,7 @@ namespace Sistema_de_Filas.Data.Repositories.Interfaces
 {
     public interface IFilaRepo
     {
+        //Criando a interface de Fila, isso e basicamente a assinatura desses metodos que estao no FilaRepo
         public Task<List<Fila>> PegarTodasAsync();
         public Task<Fila?> PegarPorIdAsync(int id);
         public Task<Fila> AdicionarAsync(Fila fila);

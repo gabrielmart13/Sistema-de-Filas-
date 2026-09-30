@@ -9,7 +9,7 @@ namespace Sistema_de_Filas.Data.Repositories
     public class FilaRepo : IFilaRepo
     {
         private readonly DataContext _context;
-        public FilaRepo (DataContext context)
+        public FilaRepo (DataContext context) //Injeção de dependencia do meu contexto
         {
             _context = context;
         }

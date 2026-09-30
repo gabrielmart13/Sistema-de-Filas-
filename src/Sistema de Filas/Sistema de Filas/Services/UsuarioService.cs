@@ -14,6 +14,7 @@ namespace Sistema_de_Filas.Services
 
         public async Task<Usuario> AdicionarUsuario(Usuario usuario)
         {
+            //Fazendo todas verificações necessarias antes de adicionar um usuario
             if(string.IsNullOrWhiteSpace(usuario.Email) || 
                 string.IsNullOrWhiteSpace(usuario.Tipo) || 
                 string.IsNullOrWhiteSpace(usuario.Nome) ||
@@ -21,7 +22,7 @@ namespace Sistema_de_Filas.Services
             {
                 throw new Exception("Voce precisa preencher todas informações para criar usuario");
             }
-            return await _usuarioRepo.AdicionarAsync(usuario);
+            return await _usuarioRepo.AdicionarAsync(usuario); //Adicionando o usuario com o metodo do usuariorepo
 
         }
 

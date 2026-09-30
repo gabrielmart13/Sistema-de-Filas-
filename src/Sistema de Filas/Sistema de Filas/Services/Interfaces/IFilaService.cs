@@ -4,6 +4,7 @@ namespace Sistema_de_Filas.Services.Interfaces
 {
     public interface IFilaService
     {
+        //Isso define qual a assinatura dos metodos que são usados no Service
         public Task<Fila> AdicionarFila(Fila fila);
         public Task<Fila> AtualizarFila(int id, Fila fila);
         public Task<Fila> DeletarFila(int id);

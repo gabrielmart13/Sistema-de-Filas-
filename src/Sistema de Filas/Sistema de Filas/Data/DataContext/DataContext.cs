@@ -5,13 +5,15 @@ namespace Sistema_de_Filas.Data
 {
     public class DataContext : DbContext
     {
+        //Criando o contexto da minha aplicacão
         public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
 
         }
 
-        public DbSet<Usuario> Usuarios { get; set; }
+        //Referenciando as minhas tabelas 
+        public DbSet<Usuario> Usuarios { get; set; } 
         public DbSet<Fila> Filas { get; set; }
         public DbSet<Senha> Senhas { get; set; }
     }
